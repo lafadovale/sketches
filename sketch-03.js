@@ -16,7 +16,7 @@ const settings = {
 const sketch = ({ context, width, height }) => {
   const agents = [];
 
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 100; i++) {
     const x = random.range(0, width);
     const y = random.range(0, height);
 
@@ -24,7 +24,8 @@ const sketch = ({ context, width, height }) => {
   }
 
   return ({ context, width, height }) => {
-    context.fillStyle = "white";
+    context.fillStyle = "#121214";
+    context.strokeStyle = "orange";
     context.fillRect(0, 0, width, height);
 
     agents.forEach((agent) => {
@@ -52,8 +53,10 @@ class Agent {
   }
 
   bounce(width, height) {
-    if (this.pos.x <= 0 || this.pos.x >= width) this.vel.x *= -1;
-    if (this.pos.y <= 0 || this.pos.y >= height) this.vel.y *= -1;
+    if (this.pos.x <= this.radius || this.pos.x >= width - this.radius)
+      this.vel.x *= -1;
+    if (this.pos.y <= this.radius || this.pos.y >= height - this.radius)
+      this.vel.y *= -1;
   }
 
   update() {

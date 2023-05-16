@@ -3,7 +3,7 @@ const random = require("canvas-sketch-util/random");
 const math = require("canvas-sketch-util/math");
 
 const settings = {
-  dimensions: [1080, 1350],
+  dimensions: [1080, 1080],
   animate: true,
 };
 
@@ -54,7 +54,8 @@ const sketch = ({ context, width, height }) => {
     agents.forEach((agent) => {
       agent.update();
       agent.draw(context);
-      agent.bounce(width, height);
+      // agent.bounce(width, height);
+      agent.wrap(width, height);
     });
   };
 };
@@ -86,6 +87,13 @@ class Agent {
       this.vel.x *= -1;
     if (this.pos.y <= this.radius || this.pos.y >= height - this.radius)
       this.vel.y *= -1;
+  }
+
+  wrap(width, height) {
+    if (this.pos.x <= 0) this.pos.x = width;
+    if (this.pos.x >= width) this.pos.x = 0;
+    if (this.pos.y <= 0) this.pos.y = height;
+    if (this.pos.y >= height) this.pos.y = 0;
   }
 
   update() {

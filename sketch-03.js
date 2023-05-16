@@ -26,7 +26,10 @@ const sketch = ({ context, width, height }) => {
 
   return ({ context, width, height }) => {
     context.fillStyle = "#121214";
-    context.strokeStyle = "gold";
+    context.strokeStyle = `rgb(${random.range(0, 255)}, ${random.range(
+      0,
+      255
+    )}, ${random.range(0, 255)})`;
     context.fillRect(0, 0, width, height);
 
     for (let i = 0; i < agents.length; i++) {

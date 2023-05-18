@@ -15,6 +15,8 @@ const params = {
   scaleMax: 30,
   freq: 0.001,
   amp: 0.2,
+  frame: 0,
+  animate: true,
 };
 
 const sketch = () => {
@@ -79,6 +81,8 @@ const createPane = () => {
   folder = pane.addFolder({ title: "Noise" });
   folder.addInput(params, "freq", { min: -0.01, max: 0.01 });
   folder.addInput(params, "amp", { min: 0, max: 1 });
+  folder.addInput(params, "animate");
+  folder.addInput(params, "frame", { min: 0, max: 999 });
 };
 
 createPane();
